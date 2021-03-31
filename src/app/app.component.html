@@ -1,2 +1,26 @@
 <app-navbar name="{{ name }}"></app-navbar>
+<br>
+
+<div class="container">
+  <h3 class="h5">BitCoin agora</h3>
+  <button (click)="updateBitCoinService()">Atualizar</button>
+  <div *ngIf="bitcoinService.currentResponse">
+    <div>
+      {{bitcoinService.currentResponse.time.update}}
+    </div>
+    <table border="1">
+      <tr>
+        <th>Data / hora</th>
+        <th>USD</th>
+        <th>BRL</th>
+      </tr>
+      <tr *ngFor="let response of this.bitcoinService.updateList">
+        <td>{{response.time.update}}</td>
+        <td>{{response.bpi.USD.rate}}</td>
+        <td>{{response.bpi.BRL.rate}}</td>
+      </tr>
+    </table>
+  </div>
+</div>
+
 <router-outlet></router-outlet>

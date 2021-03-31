@@ -8,10 +8,13 @@ import { BitcoinService } from "./bitcoin.service";
 import { NavbarComponent } from "./navbar/navbar.component";
 import { RouterModule } from "@angular/router";
 import { HomeComponent } from "./home/home.component";
+import { TimerService } from "./timer.service";
+import { HttpClientModule } from "@angular/common/http";
 
 @NgModule({
   imports: [
     BrowserModule,
+    HttpClientModule,
     FormsModule,
     RouterModule.forRoot([
       {
@@ -22,6 +25,6 @@ import { HomeComponent } from "./home/home.component";
   ],
   declarations: [AppComponent, HelloComponent, NavbarComponent],
   bootstrap: [AppComponent],
-  providers: [BitcoinService]
+  providers: [BitcoinService, TimerService]
 })
 export class AppModule {}
