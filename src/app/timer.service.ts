@@ -6,14 +6,16 @@ export class TimerService {
   private timer: any;
   private counter = 0;
 
-  constructor() {}
+  constructor(public bitcoinService: BitcoinService) {}
 
-  start() {
+  start(ms: number) {
     if (!this.timer) {
       this.timer = setInterval(() => {
-        BitcoinService.update();
-        return this.counter;
-      }, 60000);
+        if (this.counter % 5 == 0) {
+          this.bitcoinService.update();
+        }
+        this.counter++;
+      }, ms);
     }
   }
 

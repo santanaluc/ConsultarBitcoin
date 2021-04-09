@@ -1,33 +1,31 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { timer } from "rxjs";
 
-interface Response {
-  time: { update: string };
+interface Reponse {
+  time: { updated: string };
   bpi: {
     USD: {
-      symbol: string;
+      code: string;
       rate: string;
       rate_float: number;
     };
     BRL: {
-      symbol: string;
+      code: string;
       rate: string;
       rate_float: number;
     };
   };
 }
-
 @Injectable()
 export class BitcoinService {
-  currentResponse: Response;
-  updateList: Array<Response> = [];
+  currentResponse: Reponse;
+  updateList: Array<Reponse> = [];
 
   constructor(private http: HttpClient) {}
 
   update() {
     this.http
-      .get<Response>("https://api.coindesk.com/v1/bpi/currentprice/BRL.json")
+      .get<Reponse>("https://api.coindesk.com/v1/bpi/currentprice/BRL.json")
       .subscribe(data => {
         if (!this.currentResponse) {
           this.updateList.push(data);

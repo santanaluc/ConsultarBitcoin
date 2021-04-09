@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from "@angular/core";
+import { TimerService } from "../timer.service";
 
 @Component({
   selector: "app-home",
@@ -9,7 +10,9 @@ export class HomeComponent implements OnInit {
   @Input() ra: String;
   @Input() name: String;
 
-  constructor() {}
+  constructor(public timer: TimerService) {
+    this.timer.start(1000);
+  }
 
   ngOnInit() {}
 }

@@ -1,12 +1,17 @@
 <app-navbar name="{{ name }}"></app-navbar>
-<br>
-
-<div class="container">
+<hr>
+<router-outlet></router-outlet>
+<hr>
+<div class="container bg-light">
   <h3 class="h5">BitCoin agora</h3>
   <button (click)="updateBitCoinService()">Atualizar</button>
   <div *ngIf="bitcoinService.currentResponse">
     <div>
-      {{bitcoinService.currentResponse.time.update}}
+      <span [innerHTML]="bitcoinService.currentResponse.bpi.USD.code"></span>
+    {{bitcoinService.currentResponse.bpi.USD.rate}}
+    <br>
+    <span [innerHTML]="bitcoinService.currentResponse.bpi.BRL.code"></span>
+    {{bitcoinService.currentResponse.bpi.BRL.rate}}
     </div>
     <table border="1">
       <tr>
@@ -15,12 +20,11 @@
         <th>BRL</th>
       </tr>
       <tr *ngFor="let response of this.bitcoinService.updateList">
-        <td>{{response.time.update}}</td>
+        <td>{{response.time.updated}}</td>
         <td>{{response.bpi.USD.rate}}</td>
         <td>{{response.bpi.BRL.rate}}</td>
       </tr>
     </table>
   </div>
 </div>
-
-<router-outlet></router-outlet>
+<br>
